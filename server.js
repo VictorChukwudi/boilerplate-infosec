@@ -66,6 +66,15 @@ app.use(function (req, res, next) {
   res.status(404).type("txt").send("Not Found");
 });
 
+
+bcrypt.hash('passw0rd!', 13, (err, hash) => {
+  console.log(hash);
+  //$2a$12$Y.PHPE15wR25qrrtgGkiYe2sXo98cjuMCG1YwSI5rJW1DSJp0gEYS
+  bcrypt.compare('passw0rd!', hash, (err, res) => {
+    console.log(res); //true
+  });
+});
+
 module.exports = app;
 
 /********************************************
