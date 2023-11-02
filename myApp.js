@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet=require("helmet")
 const app = express();
+const BCrypt=require("bcrypt")
 
 // const ninetyDays=90*24*60*60
 // app.use(helmet.hidePoweredBy());
