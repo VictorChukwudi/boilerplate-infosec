@@ -8,8 +8,7 @@ var app = express();
 app.disable("x-powered-by");
 var fs = require("fs");
 var path = require("path");
-const helmet=require("helmet")
-const bcrypt=require('bcrypt')
+const BCrypt=require('bcrypt');
 
 app.use(function (req, res, next) {
   res.set({
@@ -20,19 +19,6 @@ app.use(function (req, res, next) {
   app.disable("x-powered-by");
   next();
 });
-const ninetyDays=90*24*60*60
-app.use(helmet.hidePoweredBy());
-app.use(helmet.frameguard({action:"deny"}))
-app.use(helmet.xssFilter())
-app.use(helmet.noSniff())
-app.use(helmet.ieNoOpen())
-app.use(helmet.hsts({maxAge:ninetyDays, force:true}))
-app.use(helmet.dnsPrefetchControl())
-app.use(helmet.noCache())
-app.use(helmet.contentSecurityPolicy({directives:{
-  defaultSrc:["'self'"],
-  scriptSrc:["'self'",'trusted-cdn.com']
-}}))
 
 app.get("/file/*?", function (req, res, next) {
   if (req.params[0] === ".env") {
